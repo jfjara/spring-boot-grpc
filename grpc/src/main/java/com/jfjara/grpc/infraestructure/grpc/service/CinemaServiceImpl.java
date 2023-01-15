@@ -1,31 +1,32 @@
 package com.jfjara.grpc.infraestructure.grpc.service;
 
-import com.jfjara.grpc.application.usecase.BookASeatForMovieIdUseCaseImpl;
-import com.jfjara.grpc.application.usecase.GetCurrentMoviesOnShowtimeUseCaseImpl;
 import com.jfjara.grpc.application.usecase.ports.BookASeatForMovieIdUseCase;
 import com.jfjara.grpc.application.usecase.ports.GetCurrentMoviesOnShowtimeUseCase;
 import com.jfjara.grpc.infraestructure.grpc.mapper.MovieMapper;
-import com.jfjara.grpc.infraestructure.grpc.mapper.MovieMapperImpl;
 import com.jfjara.grpc.infraestructure.grpc.mapper.SeatMapper;
-import com.jfjara.grpc.infraestructure.grpc.mapper.SeatMapperImpl;
 import com.jfjara.grpc.infraestructure.proto.*;
+import io.grpc.stub.ServerCalls;
 import io.grpc.stub.StreamObserver;
+import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 
+@GrpcService
 public class CinemaServiceImpl extends CinemaServiceGrpc.CinemaServiceImplBase {
 
+    @Autowired
+    private GetCurrentMoviesOnShowtimeUseCase getCurrentMoviesOnShowtimeUseCase;
 
-    private GetCurrentMoviesOnShowtimeUseCase getCurrentMoviesOnShowtimeUseCase = new GetCurrentMoviesOnShowtimeUseCaseImpl();
+    @Autowired
+    private BookASeatForMovieIdUseCase bookASeatForMovieIdUseCase;
 
+    @Autowired
+    private MovieMapper movieMapper;
 
-    private BookASeatForMovieIdUseCase bookASeatForMovieIdUseCase = new BookASeatForMovieIdUseCaseImpl();
-
-
-    private MovieMapper movieMapper = new MovieMapperImpl();
-
-
-    private SeatMapper seatMapper = new SeatMapperImpl();
+    @Autowired
+    private SeatMapper seatMapper;
 
     @Override
     public void getMovies(EmptyMessage request, StreamObserver<MovieShowtimesResponse> responseObserver) {
