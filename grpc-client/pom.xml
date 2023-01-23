@@ -13,9 +13,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>grpc-client</name>
 	<description>Demo project for gRPC</description>
+
 	<properties>
 		<java.version>17</java.version>
+		<net.devh.version>2.13.1.RELEASE</net.devh.version>
+		<org.projectlombok>1.18.24</org.projectlombok>
+		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+		<com.jfjara.grpc-interface>1.0-SNAPSHOT</com.jfjara.grpc-interface>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -28,14 +34,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-
 		</dependency>
-		<dependency>
-			<groupId>com.jfjara</groupId>
-			<artifactId>grpc-interface</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -44,18 +43,23 @@
 		<dependency>
 			<groupId>net.devh</groupId>
 			<artifactId>grpc-client-spring-boot-starter</artifactId>
-			<version>2.13.1.RELEASE</version>
+			<version>${net.devh.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jfjara</groupId>
+			<artifactId>grpc-interface</artifactId>
+			<version>${com.jfjara.grpc-interface}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-			<version>1.18.24</version>
+			<version>${org.projectlombok}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.5.3.Final</version>
+			<version>${org.mapstruct.version}</version>
 		</dependency>
 	</dependencies>
 
